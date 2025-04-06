@@ -22,7 +22,11 @@ const ServicesPage = () => {
       <h2 className="services-title">Hizmetlerimiz</h2>
       <div className="services-grid">
         {services.map((service) => (
-          <div key={service.id} className="service-card">
+          <div
+            key={service.id}
+            className="service-card"
+            onClick={() => alert(service.title)}
+          >
             <img
               src={service.image}
               alt={service.title}
@@ -30,7 +34,6 @@ const ServicesPage = () => {
             />
             <div className="service-content">
               <h3 className="service-title">{service.title}</h3>
-              <button className="service-button">Hizmete Git</button>
             </div>
           </div>
         ))}
