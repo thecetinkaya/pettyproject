@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom CSS */
+.swiper-wrapper {
+  width: 100%;
+  height: max-content !important;
+  padding-bottom: 64px !important;
+  -webkit-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+  position: relative;
+}
+
+.swiper-pagination-bullet {
+  background: #4F46E5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4F46E5 !important;
+}
+
+/* Custom CSS */
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 33.33%; /* 3 item gösterilmesini sağlar */
+}
+
+.swiper-pagination-bullet {
+  background: #4F46E5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #4F46E5 !important;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.sidebar {
+  color : #fff;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#fff;
+  padding: 10px;
+}
+.logo-icon{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background:rgba(28, 17, 41, 0.88);
+}
+
+.toggle-theme-btn{
+  position: absolute;
+  bottom: 30px;
+  left:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+
+}
+.toggle {
+  margin-left:15px;
+  
+}
+
+
+
+
+
+
+
+
+
+
+

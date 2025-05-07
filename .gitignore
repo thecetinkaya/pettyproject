@@ -1,45 +1,38 @@
-# Her şeyi ignore et
-*
+# -----------------------
+# ✅ KODLAR DIŞINDAKİ GEREKSİZLER
+# -----------------------
 
-# İzin verilen dosya ve klasörler
-!.gitignore
-!README.md
-!package.json
-!package-lock.json
-!tailwind.config.js
-
-# public klasörünü tamamen dahil et
-!public/
-public/*
-
-# src klasöründen sadece izin verilen dosyalar
-!src/App.js
-!src/index.js
-!src/index.css
-!src/context/
-!src/components/
-!src/pages/
-!src/assets/
-!src/styles/
-
-# src/components altındaki tüm içerik
-!src/components/**/*
-
-# src/context altındaki tüm içerik
-!src/context/**/*
-
-# src/pages altındaki tüm içerik
-!src/pages/**/*
-
-# src/assets altındaki tüm içerik
-!src/assets/**/*
-
-# src/styles altındaki tüm içerik
-!src/styles/**/*
-
-# Node modülleri ve diğer genel ignore'lar
+# Node.js bağımlılıkları
 node_modules/
-.DS_Store
+
+# Derleme çıktıları
+/build
+/dist
+/.next
+/.turbo
+
+# Test çıktıları
+/coverage
+
+# Ortam dosyaları
 .env
-.env.local
+.env.*.local
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Log dosyaları
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor ayarları (gerekirse)
+.vscode/
+.idea/
+
+# Diğer
+*.local
+*.cache
 *.log
+*.swp
