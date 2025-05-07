@@ -1,21 +1,45 @@
-# VSCode editor config
-.vscode/
-
-# Logs
-logs
-*.log
-
-# OS specific
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Optional: Sadece src/ klasörünü dahil etmek istiyorsan:
+# Her şeyi ignore et
 *
-!/src/
-!/public/
+
+# İzin verilen dosya ve klasörler
 !.gitignore
+!README.md
 !package.json
 !package-lock.json
-!tsconfig.json
-!README.md
+!tailwind.config.js
+
+# public klasörünü tamamen dahil et
+!public/
+public/*
+
+# src klasöründen sadece izin verilen dosyalar
+!src/App.js
+!src/index.js
+!src/index.css
+!src/context/
+!src/components/
+!src/pages/
+!src/assets/
+!src/styles/
+
+# src/components altındaki tüm içerik
+!src/components/**/*
+
+# src/context altındaki tüm içerik
+!src/context/**/*
+
+# src/pages altındaki tüm içerik
+!src/pages/**/*
+
+# src/assets altındaki tüm içerik
+!src/assets/**/*
+
+# src/styles altındaki tüm içerik
+!src/styles/**/*
+
+# Node modülleri ve diğer genel ignore'lar
+node_modules/
+.DS_Store
+.env
+.env.local
+*.log
