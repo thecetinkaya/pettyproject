@@ -1,8 +1,8 @@
 import React from "react";
-import resim from "../../assets/resim.png";
-import appstore from "../../assets/appstore.png";
-import playstore from "../../assets/playstore.png";
-import "../../styles/Home.css"; // CSS dosyasını içe aktardık
+import resim from "../assets/resim.png";
+import appstore from "../assets/appstore.png";
+import playstore from "../assets/playstore.png";
+import "../styles/Home.css"; // CSS dosyasını içe aktardık
 
 const Home = () => {
   return (

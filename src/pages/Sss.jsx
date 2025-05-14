@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"; // React Icons kullanarak ok ikonlarını ekledik
-import "../../styles/Sss.css"; // CSS dosyasını import ediyoruz
+import "../styles/Sss.css"; // CSS dosyasını import ediyoruz
 
 const Sss = () => {
   // Her bir soru için 'isOpen' durumunu tutan bir state

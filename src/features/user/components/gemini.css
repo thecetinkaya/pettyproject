@@ -1,0 +1,42 @@
+/* Sohbet alanını stilize et */
+.chat-container {
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.message-container {
+  margin-bottom: 15px;
+}
+
+.user-message {
+  background-color: #d1f7d5;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.assistant-message {
+  background-color: #f1f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+textarea {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

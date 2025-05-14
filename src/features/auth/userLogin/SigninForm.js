@@ -2,21 +2,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../UserSlice";
+import { useAuth } from "../../../context/AuthContext";
 
 const SigninForm = () => {
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Yönlendirme için kullanacağımız hook
+  const [error, setError] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    const user = {
-      email: "burak@petty.com",
-      password: "admin123",
-    };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login(user));
-    navigate("/user/dashboard"); // Giriş başarılı olduğunda yönlendirme yapıyoruz
+    try {
+      const success = await login(email, password);
+      if (success) {
+        navigate("/dashboard");
+      } else {
+        setError("Geçersiz email veya şifre");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (

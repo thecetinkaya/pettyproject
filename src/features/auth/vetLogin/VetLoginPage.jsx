@@ -1,10 +1,10 @@
 import { useState } from "react";
-import UserLoginForm from "../../features/auth/userLogin/SigninForm";
-import VetLoginForm from "../../features/auth/userLogin/SignupForm";
-import LeftOverlayContent from "../../features/auth/userLogin/LeftOverlayContent";
-import RightOverlayContent from "../../features/auth/userLogin/RightOverlayContent";
+import UserLoginForm from "./SigninForm";
+import UserSignupForm from "./SignupForm";
+import LeftOverlayContent from "./LeftOverlayContent";
+import RightOverlayContent from "./RightOverlayContent";
 
-const LoginPage = () => {
+const VetLoginPage = () => {
   console.log("LoginPage Render Edildi"); // Kontrol için ekledik
   const [isAnimated, setIsAnimated] = useState(false);
   const overlayBg =
@@ -30,7 +30,7 @@ const LoginPage = () => {
         }`}
       >
         <div className="h-full w-full flex justify-center items-center">
-          <VetLoginForm />
+          <UserSignupForm />
         </div>
       </div>
 
@@ -74,4 +74,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default VetLoginPage;

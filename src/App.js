@@ -1,66 +1,151 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import Navbar from "./features/user/sidebar/Navbar";
-import Home from "./pages/Main/Home";
-import ServicesPage from "./pages/Main/ServicesPage";
-import Sss from "./pages/Main/Sss";
-import LoginPage from "./pages/Main/LoginPage";
-import Vet from "./pages/Main/Vet";
+import Home from "./pages/Home";
+import ServicesPage from "./pages/ServicesPage";
+import Sss from "./pages/Sss";
+import Vet from "./pages/Vet";
+import UserLoginPage from "./features/auth/userLogin/UserLoginPage";
+import VetLoginPage from "./features/auth/vetLogin/VetLoginPage";
 import "./App.css";
 import Dashboard from "./features/user/pages/Dashboard";
-import Appointments from "./features/user/pages/AppointmentList";
-import AppointmentDetails from "./features/user/pages/AppointmentDetails";
-import UserPanel from "./features/user/pages/UserPanel"; // 🟢 Yeni UserPanel import edildi
-import AppointmentBooking from "./features/user/pages/AppointmentBooking";
-import DoctorList from "./features/user/pages/DoctorList";
+import AccountSettings from "./features/user/pages/AccountSettings";
 import "@ant-design/v5-patch-for-react-19";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import ChatBot from "./features/user/pages/PettyBot";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import PetProfileList from "./features/user/pages/PetProfileList";
+import PetDetails from "./features/user/pages/PetDetails";
+import GeminiChat from "./features/user/components/gemini.jsx";
+import AppointmentBooking from "./features/user/pages/appointment/AppointmentBooking.jsx";
+import AppointmentList from "./features/user/pages/appointment/AppointmentList.jsx";
 
-function MainWebsite() {
+// Private Route Component
+function PrivateRoute() {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <Outlet /> : <Navigate to="/user-login" />;
+}
+
+// Dashboard Layout Component
+const DashboardLayout = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar isDashboard={true} />
+      <main className="pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Outlet />
+        </div>
+      </main>
+    </div>
+  );
+};
+
+// Main Website Component (Scroll bazlı tek sayfa)
+const MainWebsite = () => {
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
     <div>
       <Navbar />
-      <div id="home">
+      <section id="home">
         <Home />
-      </div>
-      <div id="services">
+      </section>
+      <section id="services">
         <ServicesPage />
-      </div>
-      <div id="vet">
+      </section>
+      <section id="vet">
         <Vet />
-      </div>
-      <div id="sss">
+      </section>
+      <section id="sss">
         <Sss />
-      </div>
+      </section>
     </div>
   );
-}
+};
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainWebsite />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<LoginPage />} />
-
-
-
-        {/* 🟢 Nested Routes Kullanımı */}
-        <Route path="/user" element={<UserPanel />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route
-            path="/user/appointments/:appointmentId"
-            element={<AppointmentDetails />}
+    <Provider store={store}>
+      <AuthProvider>
+        <Router>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-          <Route path="/user/randevu-al" element={<DoctorList />} />
-          <Route
-            path="/user/randevu-al/:doctorId"
-            element={<AppointmentBooking />}
-          />
-        </Route>
-      </Routes>
-    </Router>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<MainWebsite />} />
+
+            {/* Login Pages */}
+            <Route path="/user-login" element={<UserLoginPage />} />
+            <Route path="/vet-login" element={<VetLoginPage />} />
+
+            {/* Private Routes - Dashboard */}
+            <Route path="/dashboard/*" element={<PrivateRoute />}>
+              <Route element={<DashboardLayout />}>
+                {/* Ana Dashboard */}
+                <Route index element={<Dashboard />} />
+
+                {/* Kullanıcı Ayarları */}
+                <Route path="account" element={<AccountSettings />} />
+
+                <Route
+                  path="book-appointment"
+                  element={<AppointmentBooking />}
+                />
+                <Route path="appointments" element={<AppointmentList />} />
+
+                {/* Evcil Hayvan Yönetimi */}
+                <Route path="pets">
+                  <Route index element={<PetProfileList />} />
+                  <Route path=":id" element={<PetDetails />} />
+                </Route>
+
+                {/* Yardımcı Araçlar */}
+                {/* <Route path="chatbot" element={<ChatBot />} /> */}
+                <Route path="chatbot" element={<GeminiChat />} />
+              </Route>
+            </Route>
+
+            {/* Fallback Route */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </Provider>
   );
 }
 

@@ -5,11 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import team1 from "../../assets/vets/vet1.png"
-import team2 from "../../assets/vets/vet2.png"
-import team3 from "../../assets/vets/vet3.png"
-import team4 from "../../assets/vets/vet4.png"
-import team5 from "../../assets/vets/vet5.png"
+import team1 from "../assets/vets/vet1.png"
+import team2 from "../assets/vets/vet2.png"
+import team3 from "../assets/vets/vet3.png"
+import team4 from "../assets/vets/vet4.png"
+import team5 from "../assets/vets/vet5.png"
 
 
 

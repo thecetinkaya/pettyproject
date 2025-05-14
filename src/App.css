@@ -121,7 +121,36 @@
   margin-left:15px;
   
 }
+/* Genel stiller */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+/* Kart stilleri */
+.appointment-card {
+  transition: all 0.3s ease;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Buton stilleri */
+.btn-primary {
+  background-color: #ec4899;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #db2777;
+}
+
+/* Adım göstergesi */
+.step-indicator .active {
+  background-color: #ec4899;
+  color: white;
+}
 
 
 
