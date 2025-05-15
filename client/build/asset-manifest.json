@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3312cd2f.css",
+    "main.js": "/static/js/main.bc022113.js",
+    "static/js/453.92a2364b.chunk.js": "/static/js/453.92a2364b.chunk.js",
+    "static/media/health.png": "/static/media/health.26756d57f2f05875c8fb.png",
+    "static/media/emergency.png": "/static/media/emergency.0dd7ea3c3f68ae9c7b6a.png",
+    "static/media/online.png": "/static/media/online.191efaa9b8ea2e210981.png",
+    "static/media/care.png": "/static/media/care.bb35f9c73b786fe8668f.png",
+    "static/media/vaccine.png": "/static/media/vaccine.c8ebd2205c1aab41c3bd.png",
+    "static/media/vet1.png": "/static/media/vet1.d7d69ef64d57843a0cdd.png",
+    "static/media/vet3.png": "/static/media/vet3.c18a7a1f9f743a2cc14f.png",
+    "static/media/resim.png": "/static/media/resim.9183dce1fdfd2c335253.png",
+    "static/media/vet4.png": "/static/media/vet4.25e0f912b9fcc9624446.png",
+    "static/media/vet5.png": "/static/media/vet5.6be0386bd094b97f47da.png",
+    "static/media/appointment.png": "/static/media/appointment.31db66c7f0b8bfe8b38d.png",
+    "static/media/vet2.png": "/static/media/vet2.725caca8e0e397d448ab.png",
+    "static/media/playstore.png": "/static/media/playstore.54cbfebe737f35046018.png",
+    "static/media/appstore.png": "/static/media/appstore.d981fee0e1df45ebd31b.png",
+    "index.html": "/index.html",
+    "main.3312cd2f.css.map": "/static/css/main.3312cd2f.css.map",
+    "main.bc022113.js.map": "/static/js/main.bc022113.js.map",
+    "453.92a2364b.chunk.js.map": "/static/js/453.92a2364b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3312cd2f.css",
+    "static/js/main.bc022113.js"
+  ]
+}
