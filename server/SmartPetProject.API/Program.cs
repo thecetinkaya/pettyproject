@@ -13,8 +13,19 @@ using SmartPetProject.EntityLayer.Entities;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+//CORS ayarlarÄ±
 
-// 1. Config & Token Ayarlarý
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy",
+        policy => policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
+// 1. Config & Token Ayarlarï¿½
 var configuration = builder.Configuration;
 var tokenOptions = configuration.GetSection("TokenOptions").Get<SmartPetProject.BusinessLayer.Helpers.TokenOptions>();
 if (tokenOptions == null)
@@ -32,6 +43,7 @@ builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddSingleton<ITokenHelper, JwtHelper>();
 builder.Services.AddSingleton(tokenOptions);
+
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
@@ -95,7 +107,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// CORS ayarlari
+app.UseCors("ReactPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+

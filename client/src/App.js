@@ -27,11 +27,12 @@ import PetDetails from "./features/user/pages/pet/PetDetails.jsx";
 import GeminiChat from "./features/user/components/gemini.jsx";
 import AppointmentBooking from "./features/user/pages/appointment/AppointmentBooking.jsx";
 import AppointmentList from "./features/user/pages/appointment/AppointmentList.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 // Private Route Component
 function PrivateRoute() {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <Outlet /> : <Navigate to="/user-login" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="user-login" />;
 }
 
 // Dashboard Layout Component
@@ -107,36 +108,25 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<MainWebsite />} />
+            <Route path="user-login" element={<UserLoginPage />} />
+            <Route path="vet-login" element={<VetLoginPage />} />
 
-            {/* Login Pages */}
-            <Route path="/user-login" element={<UserLoginPage />} />
-            <Route path="/vet-login" element={<VetLoginPage />} />
+            <Route path="/dashboard/*" element={<ProtectedRoute />}>
+              <Route index element={<Dashboard />} />
 
-            {/* Private Routes - Dashboard */}
-            <Route path="/dashboard/*" element={<PrivateRoute />}>
-              <Route element={<DashboardLayout />}>
-                {/* Ana Dashboard */}
-                <Route index element={<Dashboard />} />
+              <Route path="account" element={<AccountSettings />} />
+              <Route path="book-appointment" element={<AppointmentBooking />} />
+              <Route path="appointments" element={<AppointmentList />} />
 
-                {/* Kullanıcı Ayarları */}
-                <Route path="account" element={<AccountSettings />} />
-
-                <Route
-                  path="book-appointment"
-                  element={<AppointmentBooking />}
-                />
-                <Route path="appointments" element={<AppointmentList />} />
-
-                {/* Evcil Hayvan Yönetimi */}
-                <Route path="pets">
-                  <Route index element={<PetProfileList />} />
-                  <Route path=":id" element={<PetDetails />} />
-                </Route>
-
-                {/* Yardımcı Araçlar */}
-                {/* <Route path="chatbot" element={<ChatBot />} /> */}
-                <Route path="chatbot" element={<GeminiChat />} />
+              {/* Evcil Hayvan Yönetimi */}
+              <Route path="pets">
+                <Route index element={<PetProfileList />} />
+                <Route path=":id" element={<PetDetails />} />
               </Route>
+
+              {/* Yardımcı Araçlar */}
+              {/* <Route path="chatbot" element={<ChatBot />} /> */}
+              <Route path="chatbot" element={<GeminiChat />} />
             </Route>
 
             {/* Fallback Route */}
